@@ -1,0 +1,24 @@
+html {
+  font-size: 62.5%;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  margin:  0 auto;
+  max-width: 100%;
+  padding: 0 20px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

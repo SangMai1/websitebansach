@@ -1,0 +1,31 @@
+.footer {
+  &__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin-bottom: 50px;
+  }
+  &__item {
+    width: 33%;
+  }
+  &__item h4 {
+    font-size: 20px;
+    padding-bottom: 15px;
+  }
+  &__item p, &__item a {
+    color: black;
+    font-size: 15px;
+    padding-right: 30px;
+    line-height: 1.5;
+  }
+  &__item i {
+    font-size: 14px;
+    color: black;
+  }
+  &__bottom {
+    border-top: 1px solid black;
+    text-align: center;
+  }
+}

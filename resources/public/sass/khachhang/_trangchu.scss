@@ -1,0 +1,36 @@
+.banner11 {
+  margin-bottom: 82px;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 600px;
+}
+
+.content {
+  width: 100%;
+  height: auto;
+  background: #63b7c9;
+  display: flex;
+  &-left {
+    width: 20%;
+    height: auto;
+    background: #b863c9;
+    padding: 20px 40px;
+  }
+  &-left h3 {
+    font-size: 24px;
+    font-weight: bold;
+    padding-bottom: 15px;
+  }
+  &-left ul li {
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+  &-right {
+    width: 80%;
+    height: auto;
+    background: #b3c963;
+    padding: 20px;
+  }
+}

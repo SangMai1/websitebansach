@@ -1,0 +1,221 @@
+.sidebar {
+    background-color: var(--box-slidebar);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-size);
+    height: 100vh;
+    box-shadow: var(--shadow);
+    overflow-y: auto;
+
+
+
+    &-logo img {
+        height: var(--sidebar-logo-img-size);
+        max-width: 100%;
+    }
+
+    &-close {
+        display: none;
+    }
+
+    &-user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+
+        &-info {
+            display: flex;
+            align-items: center;
+        }
+
+        &-name {
+            margin-left: 10px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            color: var(--box-bg);
+        }
+    }
+
+    &-menu {
+        padding: 10px 0;
+        list-style-type: none;
+
+        &-dropdown {
+            position: relative;
+
+            &-content {
+                padding: 0;
+                height: 0;
+                overflow: hidden;
+                transition: height 0.25s ease-in-out;
+            }
+
+            &-content>li>a {
+                padding-left: 50px;
+            }
+        }
+
+        &-dropdown,
+        .dropdown-icon {
+            position: absolute;
+            right: 15px;
+        }
+    }
+
+    &-menu>li>a {
+        width: 100%;
+        padding: 15px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: capitalize;
+        transition: color 0.2s ease-in-out;
+        color: white;
+    }
+
+    &-menu>li>a.active {
+        background-color: #424145;
+        color: var(--box-bg);
+        border-right: 4px solid #424145;
+    }
+
+    &-menu>li>a:hover {
+        color: var(--main-color);
+        text-decoration: none;
+    }
+
+    &-menu>li>a>i {
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+}
+
+.sidebar-logo {
+    height: var(--sidebar-logo-size);
+    position: relative;
+    padding: 10px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dropdown-icon {
+    --size: 15px;
+    --color: var(--text-color);
+    height: var(--size);
+    width: var(--size);
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-icon::after,
+.dropdown-icon::before {
+    --height: 2px;
+    content: "";
+    width: 50%;
+    height: var(--height);
+    border-radius: 2.5px;
+    position: absolute;
+    top: calc(50% - var(--height) / 2);
+    background-color: var(--color);
+    transition: transform 0.3s ease;
+}
+
+.dropdown-icon::before {
+    left: calc(50% - var(--height) / 3);
+    transform-origin: center left;
+    transform: rotate(-45deg);
+}
+
+.dropdown-icon::after {
+    right: calc(50% - var(--height) / 3);
+    transform-origin: right;
+    transform: rotate(45deg);
+}
+
+.dropdown-icon.active::before {
+    transform: rotate(45deg);
+}
+
+.dropdown-icon.active::after {
+    transform: rotate(-45deg);
+}
+
+.sidebar-menu>li>a:hover>.dropdown-icon {
+    --color: var(--main-color);
+}
+
+.profile-image {
+    width: var(--profile-image-size);
+    height: var(--profile-image-size);
+    border-radius: 10px;
+}
+
+.dark .sidebar {
+    border-right: 2px solid var(--border-color);
+}
+
+// .btn {
+//     background-color: transparent;
+//     border: none;
+//     outline: none;
+//     display: grid;
+//     place-items: center;
+//     cursor: pointer;
+//     color: var(--main-color);
+//     padding: 0.5rem;
+//     border-radius: 0.25rem;
+// }
+
+.btn i {
+    font-size: 1.25rem;
+    color: var(--box-bg);
+}
+
+.btn-outline {
+    border: 2px solid var(--box-bg);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-outline:hover {
+    background-color: var(--main-color);
+    color: #fff;
+}
+
+.darkmode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.darkmode-switch {
+    --height: var(--darkmode-toggle-size);
+    --width: calc(var(--height) * 2);
+    height: var(--height);
+    width: var(--width);
+    border-radius: calc(var(--height) / 2);
+    background-color: #f5f6fa;
+    position: relative;
+}
+
+.darkmode-switch::before {
+    content: "";
+    --height: 20px;
+    --main-color: #0652dd;
+    width: var(--height);
+    height: var(--height);
+    position: absolute;
+    left: 0;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    transition: left 0.3 ease-in-out;
+}
+
+.darkmode-switch.active::before {
+    left: 50%;
+}
