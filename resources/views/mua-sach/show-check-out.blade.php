@@ -1,27 +1,46 @@
 @extends('mua-sach.layout')
 @section('main')
-    <div>
-      <div class="register-req">
-        <p>Làm ơn đăng ký hoặc đăng nhập đê thanh toán giỏ hàng và xem lại lịch sử mua hàng</p>
-      </div>
-      <div class="shopper-infomation">
+  @include('mua-sach.navigation2')
+    <div class="section">
+      <div class="container">
         <div class="row">
-          <div class="col-sm-5 clearfix">
-            <div class="bill-to">
-              <p>Điền thông tin gửi hàng</p>
-              <div class="form-one">
-                <form action="/api/mua-sach/save-checkout-customer" method="POST">
-                  {{ csrf_field() }}
-                  <input type="text" name="shipping_email" placeholder="Email">
-                  <input type="text" name="shipping_name" placeholder="Họ và tên">
-                  <input type="text" name="shipping_address" placeholder="Địa chỉ">
-                  <input type="text" name="shipping_phone" placeholder="Số điện thoại">
-                  <textarea name="shipping_notes" id="" cols="30" rows="10" placeholder="Ghi chú đơn hàng của bạn"></textarea>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+          <form class="clearfix" action="/api/mua-sach/save-checkout-customer" method="POST">
+            {{ csrf_field() }}
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="billing-details">
+                <div class="section-title">
+                  <h3 class="title">Điền thông tin gửi hàng</h3>
+                </div>
+    
+                <div class="form-group">
+                  <label for="txtName">Họ tên:</label>
+                  <input class="input" type="text" id="txtName" name="name" placeholder="Nhập họ tên" required="">
+                </div>
+                <div class="form-group">
+                  <label for="txtEmail">Email:</label>
+                  <input class="input" type="email" id="txtEmail" name="email" placeholder="Nhập email" required="">
+                </div>
+                <div class="form-group">
+                  <label for="txtAddress">Địa chỉ nhận hàng:</label>
+                  <input class="input" type="text" id="txtAddress" name="address" placeholder="Nhập địa chỉ nhận hàng"
+                    required="">
+                </div>
+                <div class="form-group">
+                  <label for="txtName">Số điện thoại:</label>
+                  <input class="input" type="text" id="txtPhone" name="phone" placeholder="Nhập số điện thoại"
+                    required="">
+                </div>
+                <div class="form-group">
+                  <label for="txtNotes">Ghi chú</label>
+                  <textarea name="notes" id="" cols="30" rows="10" placeholder="Ghi chú đơn hàng của bạn"></textarea>
+                </div>
+                <div class="form-group text-center">
+                  <button class="primary-btn" type="submit">Gửi</button>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

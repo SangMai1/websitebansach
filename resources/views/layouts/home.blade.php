@@ -9,10 +9,11 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
   <link rel="stylesheet" href="/css/admin/grid.css">
   <link rel="stylesheet" href="/css/admin/style.css">
   @yield('css')
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Trang admin</title>
 </head>
 <body>
@@ -28,13 +29,13 @@
       <div class="sidebar-user-info">
         <img src="/img/anh-avatar-dep.jpg" alt="User picture" class="profile-image">
         <div class="sidebar-user-name">
-          Sang
+          {{$username}}
         </div>
   
       </div>
-      <button class="btn btn-outline">
+      <a href="/api/logoutadmin" class="btn btn-outline">
           <i class='bx bx-log-out bx-flip-horizontal' ></i>
-      </button>
+      </a>
     </div>
 
 
@@ -47,9 +48,9 @@
         </a>
       </li>
       <li>
-        <a href="#">
+        <a href="/api/slide/list">
           <i class='bx bx-chart bx-flip-horizontal' ></i>
-          <span>thống kê</span>
+          <span>Slide</span>
         </a>
       </li>
       <li class="sidebar-submenu">
@@ -60,49 +61,42 @@
         </a>
         <ul class="sidebar-menu sidebar-menu-dropdown-content">
           <li>
-            <a href="#">Nhân sự</a>
-            <a href="#">Chức năng</a>
-            <a href="#">Chức vụ</a>
+            <a href="/api/user/list">Nhân sự</a>
+            <a href="/api/mission/list">Chức năng</a>
           </li>
         </ul>
       </li>
       <li class="sidebar-submenu">
         <a href="#" class="sider-menu-dropdown">
           <i class='bx bxs-category'></i>
-          <span>Quản lý phòng - dịch vụ</span>
+          <span>Quản lý sách</span>
           <div class="dropdown-icon"></div>
         </a>
         <ul class="sidebar-menu sidebar-menu-dropdown-content">
           <li>
-            <a href="#">Phòng</a>
-            <a href="#">Dịch vụ</a>
+            <a href="/api/categories/list">Danh mục</a>
+            <a href="/api/book/list">Sách</a>
           </li>
         </ul>
       </li>
       <li class="sidebar-submenu">
-        <a href="#" class="sider-menu-dropdown">
+        <a href="/api/order-admin/danh-sach" >
           <i class='bx bxs-category'></i>
-          <span>Quản lý hóa đơn</span>
-          <div class="dropdown-icon"></div>
+          Quản lý đơn hàng
         </a>
-        <ul class="sidebar-menu sidebar-menu-dropdown-content">
-          <li>
-            <a href="#">Phiếu đặt cọc</a>
-            <a href="#">Tìm hóa đơn đặt phòng, trả phòng</a>
-          </li>
-        </ul>
       </li>
       <li class="sidebar-submenu">
-        <a href="#" class="sider-menu-dropdown">
+        <a href="/api/warehouse/list">
           <i class='bx bxs-category'></i>
-          <span>Quản lý khách hàng</span>
-          <div class="dropdown-icon"></div>
+          Nhập kho
         </a>
-        <ul class="sidebar-menu sidebar-menu-dropdown-content">
-          <li>
-            <a href="#">Khách hàng</a>
-          </li>
-        </ul>
+
+      </li>
+      <li class="sidebar-submenu">
+        <a href="/api/customer/list">
+          <i class='bx bxs-category'></i>
+          Khách hàng
+        </a>
       </li>
 
 
@@ -116,6 +110,9 @@
 
   <div class="over-play"></div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+  {!! Toastr::message() !!}
   <script src="/js/home.js"></script>
   {{-- <script src="/js/main.js"></script> --}}
   <!-- JQuery -->

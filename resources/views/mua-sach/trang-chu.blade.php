@@ -1,49 +1,37 @@
 @extends('mua-sach.layout')
 @section('main')
-  <div class="banner11">
-      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          @foreach ($slides as $item)
-            <div class="carousel-item">
-              <img class="d-block w-100" src="/storage/img/{{$item->file_path}}" alt="slide">
-            </div>    
-          @endforeach
-        </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
 
-    <div class="content">
-      <div class="content-left">
-        <h3>Danh mục</h3>
-        <ul>
-          @foreach ($danhmucs as $item)
-            <li><a href="/api/mua-sach/sach-theo-danh-muc/{{$item->id}}">{{$item->name}}</a></li>  
-          @endforeach
-        </ul>
-      </div>
-      <div class="content-right">
-        <div class="card-columns">
-          @foreach ($sachs as $item)
-            <div class="card">
-              <a href="/api/mua-sach/chi-tiet-sach/{{$item->id}}">
-                <img class="card-img-top" src="/storage/img/{{$item->file_path}}" alt="Card image cap">
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">{{$item->name}}</h5>
-                <p class="card-text">{{number_format($item->price)}} đ</p>
-                <button class="btn btn-primary">Mua ngay</button>
+  @include('mua-sach.navigation1')
+  @include('mua-sach.slide')
+
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-title">
+            <h2 class="title">Mới nhất</h2>
+          </div>
+        </div>
+
+        @foreach ($sachs as $item)
+          <div class="col-md-3 col-sm-6 col-xs-6 product-box">
+            <div class="product product-single">
+              <div class="product-thumb">
+                <a href="/api/mua-sach/chi-tiet-sach/{{$item->id}}" class="main-btn quick-view" style="cursor: pointer;"><i
+                    class="fa fa-search-plus"></i> Chi tiết</a>
+                <img src="/storage/img/{{$item->file_path}}" alt="" height="200px">
+              </div>
+              <div class="product-body">
+                <h2 class="product-name"><a href="#">{{$item->name}}</a></h2>
+                <div class="product-rating text-center">
+                  {{number_format($item->price, 0, '', '.')}} VND
+                </div>
               </div>
             </div>
-          @endforeach
-        </div>
+          </div>
+        @endforeach
       </div>
     </div>
+  </div>
+
 @endsection

@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../resources/public/sass/viewSlide.scss"],"names":[],"mappings":"AAAA;EACE;EACA","file":"viewSlide.css"}
+{"version":3,"sourceRoot":"","sources":["../../../resources/public/sass/admin/viewSlide.scss"],"names":[],"mappings":"AAAA;EACE;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE;EACA;;;AAGF;EACE;EACA","file":"viewSlide.css"}

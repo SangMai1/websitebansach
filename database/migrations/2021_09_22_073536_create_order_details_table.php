@@ -20,6 +20,7 @@ class CreateOrderDetailsTable extends Migration
             $table->string('product_name');
             $table->bigInteger('product_price');
             $table->integer('product_quantity');
+            $table->integer('status');
             $table->timestamps();
             $table->softDeletes();
         });

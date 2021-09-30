@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->integer('customer_id');
             $table->integer('shipping_id');
             $table->integer('payment_id');
-            $table->string('total');
-            $table->integer('status');
+            $table->bigInteger('total');
+            $table->integer('status'); //0: Đang xử lí, 1: Đang giao hàng, 2: Đã nhận hàng
             $table->timestamps();
             $table->softDeletes();
         });

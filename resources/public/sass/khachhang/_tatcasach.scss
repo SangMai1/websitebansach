@@ -1,18 +1,38 @@
-.col-lg-3 {
-  background: #78d691;
-  height: auto;
+.list-group {
+  margin-bottom: 0px;
 }
 
-.col-lg-3 ul {
-  padding: 30px;
+.list-group-item:first-child {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
-.col-lg-3 ul li{
-  font-size: 20px;
-  padding-bottom: 10px;
+.list-group-item {
+  border-right: 0px;
+  border-left: 0px;
 }
 
-.col-lg-9 {
-  background: #89918b;
-  height: auto;
+.list-group-item:last-child {
+  border-bottom-right-radius:0px;
+  border-bottom-left-radius:0px;
+}
+
+.list-group-item {
+  padding: 15px;
+}
+
+.box-all:hover .quick-view {
+  width: 120px;
+}
+
+.box-all .quick-view {
+  width: 120px;
+}
+
+.cart-size {
+  font-size: 10px;
+}
+
+.box-height {
+  height: 372px;
 }

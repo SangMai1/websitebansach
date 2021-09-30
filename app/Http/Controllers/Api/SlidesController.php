@@ -7,6 +7,8 @@ use App\Http\Requests\RequestSlide;
 use App\Models\slides;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Session;
 
 class SlidesController extends Controller
 {
@@ -17,10 +19,12 @@ class SlidesController extends Controller
      */
     public function index()
     {
-        return view('/slide/danh-sach');
+        $username = Session::get('username');
+        return view('/slide/list', compact(['username']));
     }
 
-    public function more_data(Request $request){
+    public function more_data(Request $request)
+    {
         $result = DB::table('slides')
                 ->limit($request['limit'])
                 ->offset($request['start'])
@@ -31,7 +35,8 @@ class SlidesController extends Controller
     }
 
     public function create(){
-        return view('/slide/them-moi');
+        $username = Session::get('username');
+        return view('/slide/create', compact(['username']));
     }
 
     /**
@@ -49,7 +54,7 @@ class SlidesController extends Controller
         $slide->file_path=$request->file->hashName();
         $slide->create_by= 1;
         $slide->update_by= 1;
-        $request->session()->flash('message', $slide->save() ? 'Thêm mới thành công!' : 'Thêm mới thất bại!');
+        $slide->save() ? Toastr::success('Thêm mới thành công', 'Success') : Toastr::error('Thêm mới thất bại', 'Error');
         return redirect()->route('slides.list');
     }
 
@@ -61,8 +66,9 @@ class SlidesController extends Controller
      */
     public function edit(Request $request)
     {
+        $username = Session::get('username');
         $slides = slides::find($request->id);
-        return view('/slide/cap-nhat', compact(['slides']));
+        return view('/slide/update', compact(['slides', 'username']));
     }
 
     /**
@@ -95,7 +101,7 @@ class SlidesController extends Controller
             $slidesEdit["file_path"] = $filename;
         }
         
-        $slides->update($slidesEdit);
+        $slides->update($slidesEdit) ? Toastr::success('Cập nhật thành công', 'Success') : Toastr::error('Cập nhật thất bại', 'Error');
         
         return redirect()->route('slides.list'); 
     }
@@ -108,10 +114,26 @@ class SlidesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        slides::destroy($id) ? Toastr::success('Xóa thành công', 'Success') : Toastr::error('Xóa thất bại', 'Error');
+        return redirect()->route('slides.list'); 
     }
 
-    private function getCodeSlide(){
+    public function search(Request $request)
+    {
+        if($request->has('search')){
+            $search = $request->search;
+            $result = DB::table('slides')
+                    ->where('name', 'LIKE', '%' . $search . '%')
+                    ->where('deleted_at', null)
+                    ->get();
+            return response()->json($result);
+        } else {
+            return redirect()->route('slides.list'); 
+        }
+    }
+
+    private function getCodeSlide()
+    {
         return "SL" . DB::table('slides')->max('id');     
     }
 }

@@ -1,38 +1,37 @@
 @extends('mua-sach.layout')
 @section('main')
-    <section id="form">
+  @include('mua-sach.navigation2')
+    <div class="section">
       <div class="container">
-        <div class="col-sm-4 col-sm-offset-1">
-          <div class="login-form">
-            <h2>Đăng nhập tài khoản</h2>
-            <form action="/api/mua-sach/login-customer" method="POST">
-              {{ csrf_field() }}
-              <input type="email" name="email_account" placeholder="Email">
-              <input type="password" name="password_account" placeholder="Password">
-              <span>
-                <input type="checkbox" class="checkbox">
-                Nhớ mật khẩu
-              </span>
-              <button type="submit" class="btn btn-default">Đăng nhập</button>
-            </form>
-          </div>
-        </div>
-        <div class="col-sm-1">
-          OR
-        </div>
-        <div class="col-sm-4">
-          <div class="signup-form">
-            <h2>Tạo mới tài khoản</h2>
-            <form action="/api/mua-sach/add-customer" method="POST">
-              {{ csrf_field() }}
-              <input type="text" name="account_name" placeholder="Họ và tên">
-              <input type="email" name="account_email" placeholder="Địa chỉ email">
-              <input type="password" name="account_password" placeholder="Mật khẩu">
-              <input type="text" name="account_phone" placeholder="Số điện thoại">
-              <button type="submit" class="btn btn-primary">Đăng kí</button>
-            </form>
-          </div>
+        <div class="row">
+          <form class="clearfix" action="/api/mua-sach/login-customer" method="post">
+            {{ csrf_field() }}
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+              <div class="billing-details">
+                <div class="section-title">
+                  <h3 class="title">Đăng nhập</h3>
+                </div>
+                <div class="form-group">
+                  <label for="txtEmail">Email:</label>
+                  <input class="input" type="email" id="txtEmail" name="email_account" placeholder="Nhập email" required="">
+                </div>
+                <div class="form-group">
+                  <label for="txtName">Mật khẩu:</label>
+                  <input class="input" type="password" id="txtPassword" name="password_account" placeholder="Nhập mật khẩu"
+                    required="">
+                </div>
+                <div class="form-group text-center">
+                  <span style="display: flex;">
+                    <input type="checkbox" class="checkbox" style="margin: 2px;">
+                    Nhớ mật khẩu
+                  </span>
+                  <button class="primary-btn pull-right" type="submit">Đăng nhập</button>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
 @endsection

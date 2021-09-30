@@ -24,11 +24,11 @@ class RequestShippings extends FormRequest
     public function rules()
     {
         return [
-            'shipping_email'=>'required|email',
-            'shipping_name'=>'required',
-            'shipping_address'=>'required',
-            'shipping_phone'=>'required',
-            'shipping_notes'=>'required'
+            'email'=>'required|email',
+            'name'=>'required',
+            'address'=>'required',
+            'phone'=>'required',
+            'notes'=>'required'
         ];
     }
 }

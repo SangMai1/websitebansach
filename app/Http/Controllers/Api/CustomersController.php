@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\customers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Session;
 
 class CustomersController extends Controller
 {
@@ -14,7 +18,19 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        //
+        $username = Session::get('username');
+        return view('/customer/list', compact(['username']));
+    }
+
+    public function more_data(Request $request)
+    {
+        $result = DB::table('customers')
+                ->limit($request['limit'])
+                ->offset($request['start'])
+                ->where('deleted_at', null)
+                ->orderByDesc('id')
+                ->get();
+        return response()->json($result);
     }
 
     /**
@@ -59,6 +75,7 @@ class CustomersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        customers::destroy($id) ? Toastr::success('Xóa thành công', 'Success') : Toastr::error('Xóa thất bại', 'Error');
+        return redirect()->route('customer.list'); 
     }
 }
