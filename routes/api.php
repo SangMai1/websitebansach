@@ -19,8 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource("home", "App\Http\Controllers\Api\HomeController");
-// Route::apiResource("danhmucs", "App\Http\Controllers\Api\DanhMucsController");
 Route::middleware(['authencation'])->group(function () {
     Route::group(['prefix' => '/categories'], function(){
         Route::get('/create', 'App\Http\Controllers\Api\CategoriesController@create')->name('categories.create');
