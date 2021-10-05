@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
@@ -62,8 +63,8 @@ class UsersController extends Controller
         $user->phone=$request->phone;
         $user->cmnd=$request->cmnd;
         $user->address=$request->address;
-        $user->create_by= "sang";
-        $user->update_by= "sang";
+        $user->create_by= Auth::user()->id;
+        $user->update_by= Auth::user()->id;
         $user->save() ? Toastr::success('Thêm mới thành công', 'Success') : Toastr::error('Thêm mới thất bại', 'Error');
 
         $iduser = $user->id;

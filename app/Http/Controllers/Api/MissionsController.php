@@ -8,6 +8,7 @@ use App\Models\chucnangs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class MissionsController extends Controller
@@ -48,11 +49,11 @@ class MissionsController extends Controller
     public function store(RequestMission $request)
     {
         $chucNang = new chucnangs();
-        $chucNang->code=$this->getCodeMission();
-        $chucNang->name=$request->name;
-        $chucNang->route=$request->route;
-        $chucNang->create_by="sang";
-        $chucNang->update_by="sang";
+        $chucNang->code = $this->getCodeMission();
+        $chucNang->name = $request->name;
+        $chucNang->route = $request->route;
+        $chucNang->create_by = Auth::user()->id;
+        $chucNang->update_by = Auth::user()->id;
         $chucNang->save() ? Toastr::success('Thêm mới thành công', 'Success') : Toastr::error('Thêm mới thất bại', 'Error');
         return redirect()->route('mission.list');
     }

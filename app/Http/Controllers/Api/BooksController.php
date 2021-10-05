@@ -10,6 +10,7 @@ use App\Models\sachs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class BooksController extends Controller
@@ -53,12 +54,12 @@ class BooksController extends Controller
     {
         $request->file->store('img', 'public');
         $sach = new sachs();
-        $sach->code=$this->getCodeBook();
-        $sach->name=$request->name;
-        $sach->file_path=$request->file->hashName();
+        $sach->code = $this->getCodeBook();
+        $sach->name = $request->name;
+        $sach->file_path = $request->file->hashName();
         $sach->id_danhmuc = $request->id_danhmuc;
-        $sach->create_by= 1;
-        $sach->update_by= 1;
+        $sach->create_by = Auth::user()->id;
+        $sach->update_by = Auth::user()->id;
         $sach->save();
 
         $nhapkho = new nhapkhos();
@@ -66,8 +67,8 @@ class BooksController extends Controller
         $nhapkho->id_sach = $sach->id;
         $nhapkho->quantity = $request->quantity;
         $nhapkho->price = $request->price;
-        $nhapkho->create_by= 1;
-        $nhapkho->update_by= 1;
+        $nhapkho->create_by = Auth::user()->id;
+        $nhapkho->update_by = Auth::user()->id;
 
         $nhapkho->save() ? Toastr::success('Thêm mới thành công', 'Success') : Toastr::error('Thêm mới thất bại', 'Error');
         

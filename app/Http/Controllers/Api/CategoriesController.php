@@ -8,6 +8,7 @@ use App\Models\danhmucs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CategoriesController extends Controller
@@ -50,8 +51,8 @@ class CategoriesController extends Controller
         $danhmucs = new danhmucs();
         $danhmucs->code = $this->getCodeCategories();
         $danhmucs->name = $request->name;
-        $danhmucs->create_by = 1;
-        $danhmucs->update_by = 1;
+        $danhmucs->create_by = Auth::user()->id;
+        $danhmucs->update_by = Auth::user()->id;
         $danhmucs->save() ? Toastr::success('Thêm mới thành công', 'Success') : Toastr::error('Thêm mới thất bại', 'Error');
         
         return redirect()->route("categories.list");

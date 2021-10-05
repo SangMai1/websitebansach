@@ -8,6 +8,7 @@ use App\Models\slides;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class SlidesController extends Controller
@@ -52,8 +53,8 @@ class SlidesController extends Controller
         $slide->code=$this->getCodeSlide();
         $slide->name=$request->name;
         $slide->file_path=$request->file->hashName();
-        $slide->create_by= 1;
-        $slide->update_by= 1;
+        $slide->create_by= Auth::user()->id;
+        $slide->update_by= Auth::user()->id;
         $slide->save() ? Toastr::success('Thêm mới thành công', 'Success') : Toastr::error('Thêm mới thất bại', 'Error');
         return redirect()->route('slides.list');
     }

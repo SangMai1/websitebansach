@@ -26,7 +26,6 @@ class CreateUsersTable extends Migration
             $table->string('cmnd');
             $table->string('create_by');
             $table->string('update_by');
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });

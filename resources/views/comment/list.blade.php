@@ -10,7 +10,7 @@
         <i class='bx bx-menu-alt-left'></i>
       </div>
       <div class="main-title">
-        danh sách danh mục
+        danh sách bình luận
       </div>
   </div>
   <div class="main-content">

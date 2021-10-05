@@ -98,7 +98,12 @@
           Khách hàng
         </a>
       </li>
-
+      <li class="sidebar-submenu">
+        <a href="/api/review/get-list">
+          <i class='bx bxs-category'></i>
+          Bình luận
+        </a>
+      </li
 
     </ul>
   </div>
